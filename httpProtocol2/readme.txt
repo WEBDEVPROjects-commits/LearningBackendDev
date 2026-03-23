@@ -1,0 +1,1 @@
+http-hyper text transfer protocol is a foundational requrest response protocol which is used for transmitting data across the world wide web.
