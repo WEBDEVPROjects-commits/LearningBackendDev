@@ -26,8 +26,13 @@
                     <% console.log(files)%>
                     <div class="task min-w-72 px-3 py-4 bg-zinc-800 rounded-md">
                         <h1 class="text-white text-3xl tracking-tight"><%= value%></h1>
-                        <a class="text-blue-500 inline-block mt-3" href="/files/<%= value%>">Read more</a>
-                    </div>
+
+                        <div class="flex w-full justify-between items-center mt-3">
+                            <a class="text-blue-500 inline-block" href="/files/<%= value%>">Read more</a>
+                            <a class="text-zinc-600" href="/edit/<%= value%>">Edit filename</a>
+                        </div>
+
+                        </div>
                     <%}) %>
                         <% } else {%>
                             <h3 class="text-zinc-600">No task yet.</h3>
