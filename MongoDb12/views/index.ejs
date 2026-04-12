@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Directory</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-slate-50 min-h-screen py-10 px-4">
+    <div class="max-w-4xl mx-auto">
+      <!-- Header -->
+      <div class="mb-8">
+        <h1 class="text-3xl font-semibold text-slate-800 tracking-tight">
+          User Directory
+        </h1>
+        <p class="text-slate-500 text-sm mt-1">
+          Add and manage your team members below.
+        </p>
+      </div>
+
+      <!-- Form Card -->
+      <div
+        class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 mb-10"
+      >
+        <h2 class="text-base font-semibold text-slate-700 mb-5">
+          Add New User
+        </h2>
+
+        <form
+          action="/create"
+          method="POST"
+          class="grid grid-cols-1 sm:grid-cols-2 gap-4"
+        >
+          <!-- Username -->
+          <div class="flex flex-col gap-1.5">
+            <label
+              for="username"
+              class="text-xs font-medium text-slate-500 uppercase tracking-wide"
+              >Username</label
+            >
+            <input
+              id="username"
+              type="text"
+              placeholder="e.g. john_doe"
+              class="h-10 px-3 rounded-lg border border-slate-200 bg-slate-50 text-sm text-slate-800 placeholder-slate-400 focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition" name="username"
+            />
+          </div>
+
+          <!-- Age -->
+          <div class="flex flex-col gap-1.5">
+            <label
+              for="age"
+              class="text-xs font-medium text-slate-500 uppercase tracking-wide"
+              >Age</label
+            >
+            <input
+              id="age"
+              type="number"
+              placeholder="e.g. 28"
+              min="1"
+              max="120"
+              class="h-10 px-3 rounded-lg border border-slate-200 bg-slate-50 text-sm text-slate-800 placeholder-slate-400 focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition"
+              name="age"
+            />
+          </div>
+
+          <!-- Email -->
+          <div class="flex flex-col gap-1.5">
+            <label
+              for="email"
+              class="text-xs font-medium text-slate-500 uppercase tracking-wide"
+              >Email</label
+            >
+            <input
+              id="email"
+              type="email"
+              placeholder="e.g. john@email.com"
+              class="h-10 px-3 rounded-lg border border-slate-200 bg-slate-50 text-sm text-slate-800 placeholder-slate-400 focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition"
+              name="email"
+            />
+          </div>
+
+          <!-- Phone -->
+          <div class="flex flex-col gap-1.5">
+            <label
+              for="phone"
+              class="text-xs font-medium text-slate-500 uppercase tracking-wide"
+              >Phone</label
+            >
+            <input
+              id="phone"
+              type="tel"
+              placeholder="e.g. +91 98765 43210"
+              class="h-10 px-3 rounded-lg border border-slate-200 bg-slate-50 text-sm text-slate-800 placeholder-slate-400 focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition"
+              name="phone"
+            />
+          </div>
+
+          <!-- Submit -->
+          <div class="sm:col-span-2 mt-1">
+            <button
+              type="submit"
+              class="bg-blue-600 hover:bg-blue-700 active:scale-95 text-white text-sm font-medium px-5 py-2.5 rounded-lg transition-all duration-150"
+            >
+              Add User
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Cards Section -->
+      <div>
+        <h2 class="text-base font-semibold text-slate-700 mb-4">
+          Team Members
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <!-- Card 1 -->
+           <% if(users.length>0){ %>
+                <%  users.forEach((value)=>{ %>
+                 <div
+            class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 flex flex-col gap-4"
+          >
+            <div class="flex items-center gap-3">
+              <div
+                class="w-12 h-12 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center text-sm font-semibold flex-shrink-0"
+              >
+                AR
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-slate-800"><%= value.username%></p>
+                <span
+                  class="inline-block mt-0.5 text-xs font-medium px-2 py-0.5 rounded-full border bg-blue-50 text-blue-600 border-blue-200"
+                  >Update</span
+                >
+                <span
+                  class="inline-block mt-0.5 text-xs font-medium px-2 py-0.5 rounded-full border bg-blue-50 text-blue-600 border-blue-200 cursor-pointer"
+                  >Delete</span
+                >
+              </div>
+            </div>
+            <div class="border-t border-slate-100"></div>
+            <div class="flex flex-col gap-2 text-sm">
+              <div class="flex justify-between items-center">
+                <span
+                  class="text-slate-400 text-xs font-medium uppercase tracking-wide"
+                  >Age</span
+                >
+                <span class="text-slate-700 font-medium"><%= value.age %></span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span
+                  class="text-slate-400 text-xs font-medium uppercase tracking-wide"
+                  >Email</span
+                >
+                <span class="text-slate-700 font-medium text-xs"
+                  ><%= value.email %></span
+                >
+              </div>
+              <div class="flex justify-between items-center">
+                <span
+                  class="text-slate-400 text-xs font-medium uppercase tracking-wide"
+                  >Phone</span
+                >
+                <span class="text-slate-700 font-medium text-xs"
+                  ><%= value.phone %></span
+                >
+              </div>
+            </div>
+          </div>
+             <%})%>
+            <% }%>
+         
+        
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
