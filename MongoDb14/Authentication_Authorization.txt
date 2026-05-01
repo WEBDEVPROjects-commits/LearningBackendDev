@@ -1,0 +1,12 @@
+Authentication-Before giving user a profile we need to check who is the user using authentication
+Authorization- decides which tasks are allowed to be executed by the admin
+
+Every time we make a request the server forgets who you are so it asks for authorization everytime. so we use session and cookies concept to validate this user for a long term.  
+
+what we learned:
+1-How to set cookies and read them 
+2-How to use byscrypt for password encryption and decryption
+3-What is jwt and how to store data in jwt
+
+Encryption:
+we are bascially converting the important information like password from simple to complex string using the brcypt concept which creates a hash password(original password converted into something complex).It is done so that if data is leaked it cannot be decrypted.
